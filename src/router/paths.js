@@ -1,6 +1,6 @@
 import store from '../store'
 
-import Home2 from '../views/Home2.vue'
+import Home from '../views/Home.vue'
 import Login from '../components/Login.vue';
 import NotFoundPage from '../views/utils/NotFoundPage.vue';
 
@@ -25,7 +25,7 @@ export default [
   {
     path: '/',
     name: 'Home',
-    component: Home2,
+    component: Home,
     meta: {
       requiresAuth: true,
     }
@@ -45,7 +45,7 @@ export default [
     meta: {
       requiresAuth: true,
     },
-    component: () => import('../views/Upload.vue')
+    component: () => import('../views/firmware/Upload.vue')
   },
   {
     path: '/projetos',
