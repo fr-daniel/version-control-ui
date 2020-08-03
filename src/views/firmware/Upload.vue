@@ -60,11 +60,7 @@
 
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn
-          color="success"
-          :disabled="errors.any()"
-          @click="addFirmware({projeto, placa, tipoVersao, currentFile})"
-        >
+        <v-btn color="success" :disabled="errors.any()" @click="adicionarFirmware()">
           Upload
           <v-icon right>mdi-upload</v-icon>
         </v-btn>
@@ -76,6 +72,7 @@
 <script>
 import Vue from "vue";
 import { mapState, mapActions } from "vuex";
+import router from "@/router";
 import VeeValidate from "vee-validate";
 
 Vue.use(VeeValidate);
@@ -169,9 +166,21 @@ export default {
     ...mapActions("projetos", ["getAllProjetos"]),
     ...mapActions("placas", ["getAllPlacas"]),
     ...mapActions("firmware", ["addFirmware"]),
+
     selectFile(file) {
-      // this.progress = 0;
       this.currentFile = file;
+    },
+
+    adicionarFirmware() {
+      const firmware = {
+        projeto: this.projeto,
+        placa: this.placa,
+        tipoVersao: this.tipoVersao,
+        currentFile: this.currentFile,
+      };
+      console.log(firmware);
+      this.addFirmware(firmware);
+      router.push("/");
     },
   },
   watch: {
